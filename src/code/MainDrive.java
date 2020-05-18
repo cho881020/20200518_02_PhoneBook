@@ -71,7 +71,13 @@ public class MainDrive {
 					break;
 				}
 				
-				System.out.println(line);
+				String[] userInfos = line.split(",");
+				
+				String userName = userInfos[0];
+				String userPhone = userInfos[1];
+				int userBirthYear = Integer.parseInt(userInfos[2]);
+				
+				System.out.println(String.format("%s(%d세) : %s", userName, userBirthYear, userPhone));
 				
 			}
 			
