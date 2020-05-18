@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import code.datas.User;
@@ -60,6 +62,8 @@ public class MainDrive {
 		
 		File phoneBookFile = new File("phoneBook.csv");
 		
+		List<User> myFriends = new ArrayList<User>();
+		
 		try {
 			FileReader fr = new FileReader(phoneBookFile);
 			BufferedReader br = new BufferedReader(fr);
@@ -70,6 +74,7 @@ public class MainDrive {
 				
 				if (line == null) {
 					System.out.println("모두 읽었습니다.");
+					System.out.println(String.format("연락처에 총 %d명이 저장되어있습니다.", myFriends.size()));
 					break;
 				}
 				
@@ -79,9 +84,9 @@ public class MainDrive {
 				String userPhone = userInfos[1];
 				int userBirthYear = Integer.parseInt(userInfos[2]);
 				
-//				System.out.println(String.format("%s(%d세) : %s", userName, userBirthYear, userPhone));
-				
 				User user = new User(userName, userBirthYear, userPhone);
+				
+				myFriends.add(user);
 				
 				System.out.println(user);
 				
