@@ -72,12 +72,18 @@ public class MainDrive {
 	
 	static void printAllUsers() {
 		
+//		전화번호 추가와 같은 파일을 사용한다고 명시.
+//		파일 이름이 서로 다르지 않게 유의하자.
 		File phoneBookFile = new File("phoneBook.csv");
 		
+//		파일에 저장된 연락처를 목록에 담아서, 갯수파악에 사용.
 		List<User> myFriends = new ArrayList<User>();
 		
 		try {
+//			한글자씩 직접 파일을 읽는 fr
 			FileReader fr = new FileReader(phoneBookFile);
+			
+//			fr만 쓰면 불편하니, 여러글자를 뭉쳐서 String으로 리턴하도록 보조.
 			BufferedReader br = new BufferedReader(fr);
 			
 			while (true) {
