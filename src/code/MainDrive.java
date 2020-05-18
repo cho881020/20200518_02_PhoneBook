@@ -22,6 +22,21 @@ public class MainDrive {
 			System.out.print("메뉴 입력 : ");
 
 			int menuInput = scan.nextInt();
+			
+			if (menuInput == 0) {
+				System.out.println("전화번호부를 종료합니다..");
+				break;
+			}
+			else if (menuInput == 1) {
+//				TODO 전화번호 추가 기능 구현해야함
+			}
+			else if (menuInput == 2) {
+//				TODO 전화번호 목록 조회 => 출력 기능 구현
+			}
+			else {
+				System.out.println("잘못된 입력입니다.");
+				System.out.println("다시 입력해주세요.");
+			}
 		}
 
 		
