@@ -69,6 +69,15 @@ public class MainDrive {
 			FileWriter fw = new FileWriter(phoneBookFile, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
+			String inputContent = String.format("%s,%s,%d", name, phone, birthYear);
+			
+			bw.append(inputContent);
+			bw.newLine();
+			
+			bw.close();
+			fw.close();
+			
+			System.out.println("연락처 저장이 완료 되었습니다.");
 			
 		} catch (IOException e) {
 			e.printStackTrace();
