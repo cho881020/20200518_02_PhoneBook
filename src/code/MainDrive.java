@@ -86,30 +86,45 @@ public class MainDrive {
 //			fr만 쓰면 불편하니, 여러글자를 뭉쳐서 String으로 리턴하도록 보조.
 			BufferedReader br = new BufferedReader(fr);
 			
+//			파일을 끝까지 읽으면 몇줄이 될지 알수 없음.
+//			반복의 횟수가 불명확. => 무한반복 + 상황봐서 탈출.
 			while (true) {
 				
+//				br을 이용해 한 줄을 한꺼번에 불러오는 메쏘드 실행.
 				String line = br.readLine();
 				
+//				한 줄을 불렀는데 읽어올 내용이 없다고 하면?
 				if (line == null) {
+//					전부 다 읽은걸로 간주하고 빠져나가자.
 					System.out.println("모두 읽었습니다.");
+//					myFriends의 크기를 가지고, 연락처 갯수로 활용.
 					System.out.println(String.format("연락처에 총 %d명이 저장되어있습니다.", myFriends.size()));
 					break;
 				}
 				
+//				line에 내용이 있어서, break;를 안만나고 내려와야 실행되는 부분.
+				
+//				한줄에 ,로 이어져있는 사용자 정보들을 분리. => String배열로 변경.
 				String[] userInfos = line.split(",");
 				
+//				맨앞 : 이름, 가운데 : 연락처, 마지막 : 생년
 				String userName = userInfos[0];
 				String userPhone = userInfos[1];
+//				Wrapper클래스 (Integer) 를 이용해서 String을 int로 변환.
 				int userBirthYear = Integer.parseInt(userInfos[2]);
 				
+//				하나하나 얻어낸 정보들을 User클래스 객체에 담아주자.
 				User user = new User(userName, userBirthYear, userPhone);
 				
+//				만들어낸 객체를 목록에 등록. (size에 반영되도록)
 				myFriends.add(user);
 				
+//				User클래스의 toString을 오버라이딩 해서 출력.
 				System.out.println(user);
 				
 			}
 			
+//			사용이 끝난 파일은 닫아주자.
 			br.close();
 			fr.close();
 			
