@@ -16,39 +16,51 @@ import code.datas.User;
 public class MainDrive {
 
 	public static void main(String[] args) {
+//		메뉴를 출력하는 기능 실행
 		printMenu();
 	}
 	
 	static void printMenu() {
 		
+//		메뉴를 출력하고 입력 받을 스캐너.
 		Scanner scan = new Scanner(System.in);
 		
+//		메뉴를 알아보기 쉽게 출력.
 		System.out.println("*******전화번호부*******");
 		System.out.println("1. 전화번호 추가");
 		System.out.println("2. 전체 목록 조회");
 		System.out.println("0. 프로그램 종료");
 		System.out.println("*********************");
 		
+//		0번을 눌러서 종료할때까지 무한 반복.
 		while (true) {
+			
+//			실제로 어디로 가고싶은지 입력받는 부분.
 			System.out.print("메뉴 입력 : ");
-
 			int menuInput = scan.nextInt();
 			
+//			입력값에 따른 대응 방법 분기처리.
 			if (menuInput == 0) {
+//				프로그램 종료 => 무한반복만 빠져나가면 그 뒤는 알아서 종료.
+//				안내만 찍고 바로 break; 해서 (무한반복) 종료.
 				System.out.println("전화번호부를 종료합니다..");
 				break;
 			}
 			else if (menuInput == 1) {
 
+//				파일에 사용자 정보를 적는 기능 실행
 				writeUserInfoToFile();
 				
 			}
 			else if (menuInput == 2) {
 
+//				모든 사용자 정보를 불러와서 출력
 				printAllUsers();
 				
 			}
 			else {
+//				0,1,2 이외의 값은 잘못되었다고 출력.
+//				다시 입력받아야 하니까 break; 는 쓰지 않았다.
 				System.out.println("잘못된 입력입니다.");
 				System.out.println("다시 입력해주세요.");
 			}
@@ -111,6 +123,7 @@ public class MainDrive {
 	
 	static void writeUserInfoToFile() {
 		
+//		스캐너로 이름 / 폰번 / 생년을 입력받는다.
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.print("이름 입력 : ");
@@ -123,20 +136,31 @@ public class MainDrive {
 		int birthYear = scan.nextInt();
 		
 		
+//		입력된 값을 파일에 저장.
+//		어느 파일에 저장할지 경로부터 지정.
 		File phoneBookFile = new File("phoneBook.csv");
 		
+//		파일 출력중 예외 발생 소지가 있다. => FileWriter 쓸때 에러 발생.
 		try {
+			
+//			실제로 파일에 접근해주는 변수. 이어붙이기모드 활성화 (true)
 			FileWriter fw = new FileWriter(phoneBookFile, true);
+			
+//			String을 한번에 기록해주기 위해 (작업의 편의성을 위해) 사용하는 변수
 			BufferedWriter bw = new BufferedWriter(fw);
 			
+//			입력된 값을 한줄의 String으로 가공. (한번에 다 기록하려고)
 			String inputContent = String.format("%s,%s,%d", name, phone, birthYear);
 			
+//			실제 파일에 추가 기록 + 줄바꿈
 			bw.append(inputContent);
 			bw.newLine();
 			
+//			파일 사용을 마쳤으면 닫아주자.
 			bw.close();
 			fw.close();
 			
+//			저장이 완료되었음을 안내.
 			System.out.println("연락처 저장이 완료 되었습니다.");
 			
 		} catch (IOException e) {
