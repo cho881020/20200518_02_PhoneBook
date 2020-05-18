@@ -1,5 +1,9 @@
 package code;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MainDrive {
@@ -28,7 +32,9 @@ public class MainDrive {
 				break;
 			}
 			else if (menuInput == 1) {
-//				TODO 전화번호 추가 기능 구현해야함
+
+				writeUserInfoToFile();
+				
 			}
 			else if (menuInput == 2) {
 //				TODO 전화번호 목록 조회 => 출력 기능 구현
@@ -39,6 +45,35 @@ public class MainDrive {
 			}
 		}
 
+		
+	}
+	
+	
+	static void writeUserInfoToFile() {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.print("이름 입력 : ");
+		String name = scan.nextLine();
+		
+		System.out.print("폰번 입력 : ");
+		String phone = scan.nextLine();
+		
+		System.out.print("생년 입력 : ");
+		int birthYear = scan.nextInt();
+		
+		
+		File phoneBookFile = new File("phoneBook.csv");
+		
+		try {
+			FileWriter fw = new FileWriter(phoneBookFile, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
